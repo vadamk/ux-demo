@@ -1,12 +1,14 @@
 import React from "react";
+import iosInnerHeight from "ios-inner-height";
 
 // Hook
 function useScreenSize(element = window) {
+  console.log("iosInnerHeight: ", iosInnerHeight());
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = React.useState({
     width: undefined,
-    height: undefined,
+    height: iosInnerHeight()
   });
 
   React.useEffect(() => {
@@ -15,7 +17,7 @@ function useScreenSize(element = window) {
       // Set window width/height to state
       setWindowSize({
         width: element.innerWidth,
-        height: element.innerHeight,
+        height: iosInnerHeight()
       });
     }
 
@@ -27,7 +29,7 @@ function useScreenSize(element = window) {
 
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, [element]); // Empty array ensures that effect is only run on mount
 
   return windowSize;
 }
