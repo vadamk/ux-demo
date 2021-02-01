@@ -22,6 +22,8 @@ const items = [...Array(100)].map((_, i) => ({
   name: "Блюдо " + (i + 1),
 }));
 
+const HEADER_FOOTER_HEIGHT = 112
+
 const useStyles = makeStyles((...props) => {
   console.log("props: ", props);
   return {
@@ -50,16 +52,15 @@ const useStyles = makeStyles((...props) => {
     },
     content: {
       position: "relative",
-      height: "calc(100vh - 112px)",
       overflow: "hidden",
     },
   };
 });
 
 export default function Layout({ children }) {
-  const headerHeight = 56;
-  const classes = useStyles({ headerHeight });
+  const classes = useStyles();
   const screenSize = useScreenSize();
+  console.log('screenSize: ', screenSize);
 
   const [value, setValue] = React.useState(0);
 
@@ -78,7 +79,12 @@ export default function Layout({ children }) {
       </AppBar>
       <Box className={classes.fakeHeader} />
 
-      <div className={classes.content}>{children}</div>
+      <div
+        className={classes.content}
+        style={{ height: (screenSize.height || HEADER_FOOTER_HEIGHT) - HEADER_FOOTER_HEIGHT }}
+      >
+        {children}
+      </div>
 
       <Box className={classes.fakeFooter} />
       <BottomNavigation

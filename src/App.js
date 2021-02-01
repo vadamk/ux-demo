@@ -87,9 +87,10 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     flexGrow: 1,
-    padding: theme.spacing(1),
+    padding: theme.spacing(1, 0),
     overflow: "auto",
     backgroundColor: theme.palette.background.default,
+    boxSizing: 'border-box',
   },
   card: {
     width: "100%",
@@ -189,7 +190,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
     flexWrap: "wrap",
 
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.grey[100],
     padding: theme.spacing(1),
     "& > *": {
       margin: theme.spacing(0.25),

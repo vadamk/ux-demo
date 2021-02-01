@@ -1,7 +1,7 @@
 import React from "react";
 
 // Hook
-function useScreenSize() {
+function useScreenSize(element = window) {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = React.useState({
@@ -14,8 +14,8 @@ function useScreenSize() {
     function handleResize() {
       // Set window width/height to state
       setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: element.innerWidth,
+        height: element.innerHeight,
       });
     }
 
