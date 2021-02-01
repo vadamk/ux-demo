@@ -18,49 +18,45 @@ import RestoreIcon from "@material-ui/icons/Restore";
 
 import useScreenSize from "./useScreenSize";
 
-const items = [...Array(100)].map((_, i) => ({
-  name: "Блюдо " + (i + 1),
-}));
-
-const HEADER_FOOTER_HEIGHT = 112
+const HEADER_FOOTER_HEIGHT = 112;
 
 const useStyles = makeStyles((...props) => {
   console.log("props: ", props);
   return {
     root: {
-      flexGrow: 1,
+      flexGrow: 1
     },
     title: {
-      flexGrow: 1,
+      flexGrow: 1
     },
     header: {
       position: "fixed",
       top: 0,
-      height: 56,
+      height: 56
     },
     fakeHeader: {
-      height: 56,
+      height: 56
     },
     footer: {
       position: "fixed",
       bottom: 0,
       width: "100%",
-      height: 56,
+      height: 56
     },
     fakeFooter: {
-      height: 56,
+      height: 56
     },
     content: {
       position: "relative",
-      overflow: "hidden",
-    },
+      overflow: "hidden"
+    }
   };
 });
 
 export default function Layout({ children }) {
   const classes = useStyles();
   const screenSize = useScreenSize();
-  console.log('screenSize: ', screenSize);
+  console.log("screenSize: ", screenSize);
 
   const [value, setValue] = React.useState(0);
 
@@ -81,7 +77,10 @@ export default function Layout({ children }) {
 
       <div
         className={classes.content}
-        style={{ height: (screenSize.height || HEADER_FOOTER_HEIGHT) - HEADER_FOOTER_HEIGHT }}
+        style={{
+          height:
+            (screenSize.height || HEADER_FOOTER_HEIGHT) - HEADER_FOOTER_HEIGHT
+        }}
       >
         {children}
       </div>
