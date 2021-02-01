@@ -1,0 +1,16 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: 100vh;
+  font-family: sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* text-align: center; */
+}
