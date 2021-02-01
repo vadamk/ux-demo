@@ -21,7 +21,6 @@ import useScreenSize from "./useScreenSize";
 const HEADER_FOOTER_HEIGHT = 112;
 
 const useStyles = makeStyles((...props) => {
-  console.log("props: ", props);
   return {
     root: {
       flexGrow: 1
@@ -56,7 +55,6 @@ const useStyles = makeStyles((...props) => {
 export default function Layout({ children }) {
   const classes = useStyles();
   const screenSize = useScreenSize();
-  console.log("screenSize: ", screenSize);
 
   const [value, setValue] = React.useState(0);
 
