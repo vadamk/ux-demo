@@ -13,7 +13,7 @@ import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Fab from "@material-ui/core/Fab";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
 import List from "@material-ui/core/List";
@@ -21,7 +21,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 import CloseIcon from "@material-ui/icons/Close";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
@@ -30,85 +30,86 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import Layout from "./Layout";
 import DemoForm from "./DemoForm";
+import useScreenSize from "./useScreenSize";
 
 import "./styles.css";
 
 const filterCategories = [
   {
     label: "Блюда",
-    value: 1,
+    value: 1
   },
   {
     label: "Заготвки",
-    value: 2,
+    value: 2
   },
   {
     label: "Продукты",
-    value: 3,
+    value: 3
   },
   {
     label: "Напитки",
-    value: 4,
+    value: 4
   },
   {
     label: "Десерты",
-    value: 5,
+    value: 5
   },
   {
     label: "Салаты",
-    value: 6,
+    value: 6
   },
   {
     label: "Ролы",
-    value: 7,
-  },
+    value: 7
+  }
 ];
 
 const filterRestaurants = [
   {
     label: "Атриум",
-    value: 1,
+    value: 1
   },
   {
     label: "Доставка",
-    value: 2,
-  },
+    value: 2
+  }
 ];
 
 const items = [...Array(100)].map((_, i) => ({
   name: "Блюдо " + (i + 1),
   category: Math.ceil(Math.random() * filterCategories.length),
-  restaurant: Math.ceil(Math.random() * filterRestaurants.length),
+  restaurant: Math.ceil(Math.random() * filterRestaurants.length)
 }));
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   list: {
     flexGrow: 1,
     padding: theme.spacing(1, 0),
     overflow: "auto",
     backgroundColor: theme.palette.background.default,
-    boxSizing: 'border-box',
+    boxSizing: "border-box"
   },
   card: {
-    width: "100%",
+    width: "100%"
   },
   paper: {
     padding: "2px 4px",
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   input: {
     marginLeft: theme.spacing(2),
     fontSize: "1.125rem",
-    flex: 1,
+    flex: 1
   },
   filterButton: {
     position: "fixed",
     bottom: "15%",
-    right: 25,
+    right: 25
   },
   searchButton: {
     position: "fixed",
@@ -116,13 +117,13 @@ const useStyles = makeStyles((theme) => ({
     right: 25,
     transition: theme.transitions.create("right", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   sectionTitle: {
     display: "inline-block",
     marginLeft: theme.spacing(0.25),
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   chipsList: {
     display: "flex",
@@ -131,16 +132,16 @@ const useStyles = makeStyles((theme) => ({
 
     marginBottom: theme.spacing(2),
     "& > *": {
-      margin: theme.spacing(0.5),
-    },
+      margin: theme.spacing(0.5)
+    }
   },
   hiddenInput: {
     display: "flex",
     transition: theme.transitions.create("height", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    overflow: "hidden",
+    overflow: "hidden"
   },
   itemDrawer: {
     height: "100vh",
@@ -148,42 +149,42 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "auto",
     boxSizing: "border-box",
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: theme.spacing(8)
   },
   itemDrawerHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'fixed',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "fixed",
     top: 0,
     left: 0,
     height: 50,
-    width: '100%',
+    width: "100%",
     boxShadow: theme.shadows[5],
-    backgroundColor: '#fff',
-    zIndex: 1000,
+    backgroundColor: "#fff",
+    zIndex: 1000
   },
   itemDrawerHeaderTitle: {
     paddingLeft: 12,
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis"
   },
   itemDrawerFooter: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    position: 'fixed',
-    flexFlow: 'row-reverse',
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    position: "fixed",
+    flexFlow: "row-reverse",
     bottom: 0,
     left: 0,
     height: 60,
-    width: '100%',
+    width: "100%",
     padding: theme.spacing(0, 2),
     boxShadow: theme.shadows[5],
-    boxSizing: 'border-box',
-    backgroundColor: '#fff',
-    zIndex: 1000,
+    boxSizing: "border-box",
+    backgroundColor: "#fff",
+    zIndex: 1000
   },
   filterRepresentChips: {
     display: "flex",
@@ -193,9 +194,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[100],
     padding: theme.spacing(1),
     "& > *": {
-      margin: theme.spacing(0.25),
-    },
-  },
+      margin: theme.spacing(0.25)
+    }
+  }
 }));
 
 export default function App() {
@@ -209,6 +210,9 @@ export default function App() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedCategories, setSelectedCategories] = React.useState([]);
   const [selectedRestaurants, setSelectedRestaurants] = React.useState([]);
+
+  const filterRef = React.useRef();
+  const filterHeight = filterRef.current?.clientHeight || 0;
 
   const clearFilter = () => {
     setSearchQuery("");
@@ -267,7 +271,7 @@ export default function App() {
         value: "searchQuery",
         keyPrefix: "categories",
         color: "default",
-        action: () => setSearchQuery(""),
+        action: () => setSearchQuery("")
       }
     : null;
 
@@ -280,7 +284,7 @@ export default function App() {
             ...item,
             keyPrefix: "restaurants",
             color: "secondary",
-            action: toggleRestaurantsFilter(item.value),
+            action: toggleRestaurantsFilter(item.value)
           }))
       : []),
     ...(selectedCategories.length !== filterCategories.length
@@ -290,9 +294,9 @@ export default function App() {
             ...item,
             keyPrefix: "categories",
             color: "primary",
-            action: toggleCategoryFilter(item.value),
+            action: toggleCategoryFilter(item.value)
           }))
-      : []),
+      : [])
   ].filter(Boolean);
 
   const searchedItems = items
@@ -307,22 +311,18 @@ export default function App() {
         selectedRestaurants.includes(item.restaurant)
     );
 
-  const handleSearchInputClickAway = ev => {
+  const handleSearchInputClickAway = (ev) => {
     if (searchOpen) {
       ev.stopPropagation();
       ev.preventDefault();
-      setSearchOpen(false)
+      setSearchOpen(false);
       return false;
     }
-  }
+  };
 
-  const handleSaveConfirmClose = () => {
+  const handleSaveConfirmClose = () => {};
 
-  }
-
-  const handleSaveConfirm = () => {
-
-  }
+  const handleSaveConfirm = () => {};
 
   return (
     <div className="App">
@@ -334,7 +334,7 @@ export default function App() {
         >
           <Box
             className={classes.hiddenInput}
-            style={{ height: searchOpen ? 48 : 0 }}
+            style={{ height: filterHeight + searchOpen ? 48 : 0 }}
           >
             <InputBase
               fullWidth
@@ -355,7 +355,7 @@ export default function App() {
           </Box>
         </ClickAwayListener>
         {Boolean(selectedChips.length) && (
-          <Box className={classes.filterRepresentChips}>
+          <Box ref={filterRef} className={classes.filterRepresentChips}>
             {selectedChips.length > 1 && (
               <Chip
                 clickable
@@ -473,7 +473,10 @@ export default function App() {
           classes={{ paper: classes.itemDrawer }}
         >
           <Box className={classes.itemDrawerHeader}>
-            <Typography variant="body1" className={classes.itemDrawerHeaderTitle}>
+            <Typography
+              variant="body1"
+              className={classes.itemDrawerHeaderTitle}
+            >
               {(currentItem || {}).name}
             </Typography>
             <IconButton aria-label="close" onClick={toggleItemDrawer(false)}>
@@ -481,13 +484,9 @@ export default function App() {
             </IconButton>
           </Box>
           <DemoForm />
-          
+
           <Box className={classes.itemDrawerFooter}>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ flex: 2 }}
-            >
+            <Button variant="contained" color="primary" style={{ flex: 2 }}>
               Сохранить
             </Button>
             <Box px={0.5} />
@@ -507,7 +506,9 @@ export default function App() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Сохранить изменения"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            {"Сохранить изменения"}
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               Вы уверены что хотите сохранить изменения?
